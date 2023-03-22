@@ -2,9 +2,7 @@
 
 namespace AHT\PaymentFee\Plugin\Checkout\CustomerData;
 
-use Magento\Customer\CustomerData\SectionSourceInterface;
-
-class Cart implements SectionSourceInterface
+class Cart
 {
 
     public $scopeConfig;
@@ -16,7 +14,7 @@ class Cart implements SectionSourceInterface
         $this->scopeConfig = $scopeConfig;
     }
 
-    public function getSectionData()
+    public function aftergetSectionData(\Magento\Checkout\CustomerData\Cart $subject, $result)
     {
         $valueFromConfig = $this->scopeConfig->getValue(
             'carriers/freeshipping/free_shipping_subtotal',
@@ -29,7 +27,7 @@ class Cart implements SectionSourceInterface
         } else {
             $feeToShip = 0;
         }
-        $additionalVariables['fee_toship'] = $feeToShip;
-        return $additionalVariables;
+        $result['fee_toship'] = $feeToShip;
+        return $result;
     }
 }
