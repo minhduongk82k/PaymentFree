@@ -1,15 +1,8 @@
 <!-- ko if: isDisplayed() -->
-<tr class="cart-summary">
-    <th class="summary title" scope="col">
+<tr class="block shipping">
+    <th>Cần thêm $</th>
+    <th class="block shipping" scope="col">
         <span class="title" data-bind="text: getFreeShip()"></span>
     </th>
+    <th> Để được Free Ship</th>
 </tr>
-<tr class="totals paymentfee">
-    <th class="mark" scope="row">
-        <span class="title" data-bind="text: getFeeName()"></span>
-    </th>
-    <td class="amount">
-        <span class="price" data-bind="text: getValue(), attr: {'data-th': name}"></span>
-    </td>
-</tr>
-<!-- /ko -->

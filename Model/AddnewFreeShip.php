@@ -1,14 +1,13 @@
 <?php
 
-namespace AHT\PaymentFee\Plugin\Checkout\CustomerData;
+namespace AHT\PaymentFee\Model;
 
-use Magento\Checkout\Model\Session;
+use Magento\Checkout\Model\ConfigProviderInterface;
 
-class Cart
+
+class AddnewFreeShip implements ConfigProviderInterface
 {
-
     public $scopeConfig;
-
 
     public function __construct(
         \Magento\Checkout\Model\Session $checkoutSession,
@@ -18,17 +17,17 @@ class Cart
         $this->scopeConfig = $scopeConfig;
     }
 
-    public function aftergetSectionData(\Magento\Checkout\CustomerData\Cart $subject, $result)
+    public function getConfig()
     {
-        $valueFromConfig = $this->scopeConfig->getValue(
+        $valueFromConfigFee = $this->scopeConfig->getValue(
             'carriers/freeshipping/free_shipping_subtotal',
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
         );
         $quote = $this->checkoutSession->getQuote();
         $totals = $quote->getTotals();
         $subtotalAmount = $totals['subtotal']->getValue();
-        if ($valueFromConfig < $subtotalAmount) {
-            $feeToShip = $valueFromConfig - $subtotalAmount;
+        if ($valueFromConfigFee > $subtotalAmount) {
+            $feeToShip = $valueFromConfigFee - $subtotalAmount;
         } else {
             $feeToShip = 0;
         }

@@ -27,6 +27,10 @@ define([
             }
             percentage = ((subtotalAmount * 100) / maxPrice);
             return percentage;
+        },
+        getFreeShip: function () {
+            var isTaxDisplayedInGrandTotal = window.checkoutConfig.fee_toship;
+            return this.isFullMode() && isTaxDisplayedInGrandTotal;
         }
     });
 });

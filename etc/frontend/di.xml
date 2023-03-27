@@ -7,10 +7,13 @@
                 <item name="additional_provider" xsi:type="object">AHT\PaymentFee\Model\AdditionalConfigVars</item>
             </argument>
         </arguments>
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="add_freeshipfee" xsi:type="object">AHT\PaymentFee\Model\AddnewFreeShip</item>
+            </argument>
+        </arguments>
     </type>
     <type name="Magento\Checkout\CustomerData\Cart">
         <plugin name="cartPrivateDataDiscount" type="AHT\PaymentFee\Plugin\Checkout\CustomerData\Cart"/>
     </type>
 </config>
-
-

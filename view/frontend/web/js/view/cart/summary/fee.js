@@ -40,7 +40,7 @@ define(
                 return this.isFullMode() && isTaxDisplayedInGrandTotal;
             },
             getFreeShip: function () {
-                const isTaxDisplayedInGrandTotal = window.checkoutConfig.fee_toship || false;
+                var isTaxDisplayedInGrandTotal = window.checkoutConfig.fee_toship;
                 return this.isFullMode() && isTaxDisplayedInGrandTotal;
             }
         });
